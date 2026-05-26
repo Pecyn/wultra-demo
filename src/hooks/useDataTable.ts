@@ -49,6 +49,11 @@ export function computeProcessed<T>(state: TableState<T>): {
     sorted.sort((a, b) => {
       const av = a[col];
       const bv = b[col];
+      if (typeof av === "string" && typeof bv === "string") {
+        const locale =
+          typeof navigator !== "undefined" ? navigator.language : "en";
+        return av.localeCompare(bv, locale, { sensitivity: "base" }) * dir;
+      }
       if (av < bv) return -1 * dir;
       if (av > bv) return 1 * dir;
       return 0;
