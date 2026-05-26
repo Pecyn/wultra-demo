@@ -3,6 +3,7 @@ import { Layout } from './components/Layout';
 import Overview from './pages/Overview';
 import Devices from './pages/Devices';
 import DeviceDetail from './pages/DeviceDetail';
+import Users from './pages/Users';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Overview />} />
           <Route path="devices" element={<Devices />} />
           <Route path="devices/:id" element={<DeviceDetail />} />
+          <Route path="users" element={<Users />} />
         </Route>
       </Routes>
     </BrowserRouter>

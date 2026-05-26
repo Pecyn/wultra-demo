@@ -69,3 +69,17 @@ export type Event = {
 export type DeviceDetail = Device & {
   events: Event[];
 };
+
+export type User = {
+  id: string;
+  displayName: string;
+  email: string;
+  country: string;
+  tier: string;
+  createdAt: string;
+  deviceCount: number;
+};
+
+export type UsersResponse = {
+  items: User[];
+};
