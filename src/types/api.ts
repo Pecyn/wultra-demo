@@ -1,3 +1,12 @@
+import type { ReactNode } from 'react';
+
+export type Column<T> = {
+  key: keyof T;
+  label: string;
+  sortable?: boolean;
+  render?: (item: T) => ReactNode;
+};
+
 export type KeyValuePair = {
   key: string;
   value: number;

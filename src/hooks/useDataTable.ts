@@ -61,7 +61,7 @@ export function computeProcessed<T>(state: TableState<T>): {
   return { processed, totalCount };
 }
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 
 export function useDataTable<T>(initialData: T[] = []) {
@@ -70,7 +70,7 @@ export function useDataTable<T>(initialData: T[] = []) {
     10,
   );
 
-  const [state, dispatchRaw] = useReducer(
+  const [state, dispatch] = useReducer(
     tableReducer as (s: TableState<T>, a: TableAction<T>) => TableState<T>,
     {
       data: initialData,
@@ -81,10 +81,9 @@ export function useDataTable<T>(initialData: T[] = []) {
     },
   );
 
-  const dispatch = (action: TableAction<T>) => {
-    if (action.type === "SET_PAGE_SIZE") setStoredPageSize(action.payload);
-    dispatchRaw(action);
-  };
+  useEffect(() => {
+    setStoredPageSize(state.pageSize);
+  }, [state.pageSize, setStoredPageSize]);
 
   const { processed, totalCount } = computeProcessed(state);
   return { state, dispatch, processed, totalCount };
