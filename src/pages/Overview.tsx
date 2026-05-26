@@ -1,33 +1,36 @@
-import { useEffect, useState } from 'react';
-import { fetchApi } from '../api/client';
-import type { Statistics } from '../types/api';
+import { useStatistics } from '../hooks/useStatistics';
+import { KpiCard } from '../components/KpiCard';
+import { StatusPieChart } from '../components/StatusPieChart';
+import { PlatformBarChart } from '../components/PlatformBarChart';
+import { EventTypeBarChart } from '../components/EventTypeBarChart';
+import { Spinner } from '../components/Spinner';
+import styles from './Overview.module.css';
 
 export default function Overview() {
-  const [data, setData] = useState<Statistics | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const { data, loading, error } = useStatistics();
 
-  useEffect(() => {
-    fetchApi<Statistics>('statistics.json')
-      .then(setData)
-      .catch((e: unknown) => {
-        setError(e instanceof Error ? e.message : 'Unknown error');
-      })
-      .finally(() => setLoading(false));
-  }, []);
-
-  if (loading) return <p>Loading…</p>;
-  if (error) return <p>Error: {error}</p>;
+  if (loading) return <Spinner />;
+  if (error) return <p>Error: {error.message}</p>;
   if (!data) return null;
 
-  const { devices, users, activeDevices } = data.totals;
+  const { devices, activeDevices, users, events } = data.totals;
 
   return (
     <div>
       <h1>Overview</h1>
-      <p>Devices: {devices}</p>
-      <p>Users: {users}</p>
-      <p>Active devices: {activeDevices}</p>
+      <div className={styles.kpiRow}>
+        <KpiCard label="Total Devices" value={devices} />
+        <KpiCard label="Active Devices" value={activeDevices} accent="#2ea043" />
+        <KpiCard label="Total Users" value={users} />
+        <KpiCard label="Total Events" value={events} />
+      </div>
+      <div className={styles.chartRow}>
+        <StatusPieChart data={data.byStatus} />
+        <PlatformBarChart data={data.byPlatform} />
+      </div>
+      <div className={styles.chartFull}>
+        <EventTypeBarChart data={data.byEventType} />
+      </div>
     </div>
   );
 }

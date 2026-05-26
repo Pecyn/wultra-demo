@@ -1,0 +1,13 @@
+.wrapper {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
