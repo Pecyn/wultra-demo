@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { useDevices } from "../hooks/useDevices";
 import { DataTable } from "../components/DataTable";
 import { StatusBadge } from "../components/StatusBadge";
@@ -29,6 +30,7 @@ const columns: Column<Device>[] = [
 ];
 
 export default function Devices() {
+  const navigate = useNavigate();
   const { data, loading, error } = useDevices();
 
   if (loading) return <Spinner />;
@@ -37,7 +39,7 @@ export default function Devices() {
   return (
     <div>
       <h1>Devices</h1>
-      <DataTable data={data} columns={columns} />
+      <DataTable data={data} columns={columns} onRowClick={(d) => navigate(`/devices/${d.id}`)} />
     </div>
   );
 }

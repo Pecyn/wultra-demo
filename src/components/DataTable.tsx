@@ -6,9 +6,10 @@ import styles from './DataTable.module.css';
 type Props<T> = {
   data: T[];
   columns: Column<T>[];
+  onRowClick?: (item: T) => void;
 };
 
-export function DataTable<T>({ data, columns }: Props<T>) {
+export function DataTable<T>({ data, columns, onRowClick }: Props<T>) {
   const { state, dispatch, processed, totalCount } = useDataTable<T>(data);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ export function DataTable<T>({ data, columns }: Props<T>) {
                 className={col.sortable ? styles.sortable : undefined}
                 onClick={
                   col.sortable
-                    ? () => dispatch({ type: 'SET_SORT', column: col.key })
+                    ? (e) => { e.stopPropagation(); dispatch({ type: 'SET_SORT', column: col.key }); }
                     : undefined
                 }
               >
@@ -54,7 +55,11 @@ export function DataTable<T>({ data, columns }: Props<T>) {
         </thead>
         <tbody>
           {processed.map((item, i) => (
-            <tr key={i}>
+            <tr
+              key={i}
+              className={onRowClick ? styles.clickableRow : undefined}
+              onClick={onRowClick ? () => onRowClick(item) : undefined}
+            >
               {columns.map((col) => (
                 <td key={String(col.key)}>
                   {col.render

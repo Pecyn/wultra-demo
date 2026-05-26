@@ -56,3 +56,16 @@ export type Device = {
 export type DevicesResponse = {
   items: Device[];
 };
+
+export type Event = {
+  id: string;
+  type: string;
+  timestamp: string;
+  ip: string;
+  location: string;
+  result: 'success' | 'failure';
+};
+
+export type DeviceDetail = Device & {
+  events: Event[];
+};

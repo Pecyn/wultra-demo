@@ -1,0 +1,44 @@
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+}
+
+.row:nth-child(even) {
+  background: var(--color-surface-2);
+}
+
+.eventType {
+  font-family: monospace;
+  color: var(--color-accent);
+  font-size: 13px;
+  min-width: 160px;
+}
+
+.meta {
+  color: var(--color-text-muted);
+  font-size: 13px;
+}
+
+.success {
+  color: #2ea043;
+}
+
+.failure {
+  color: #f85149;
+}
+
+.empty {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  padding: 16px 0;
+}

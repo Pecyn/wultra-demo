@@ -29,6 +29,10 @@
   background: var(--color-surface-2);
 }
 
+.clickableRow {
+  cursor: pointer;
+}
+
 .sortable {
   cursor: pointer;
   user-select: none;
