@@ -1,10 +1,10 @@
 import styles from './KpiCard.module.css';
 
-interface KpiCardProps {
+type KpiCardProps = {
   label: string;
   value: number;
   accent?: string;
-}
+};
 
 export function KpiCard({ label, value, accent }: KpiCardProps) {
   return (

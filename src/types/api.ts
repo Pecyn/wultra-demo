@@ -1,14 +1,14 @@
-export interface KeyValuePair {
+export type KeyValuePair = {
   key: string;
   value: number;
-}
+};
 
-export interface ActivationDay {
+export type ActivationDay = {
   date: string;
   activations: number;
-}
+};
 
-export interface StatisticsTotals {
+export type StatisticsTotals = {
   devices: number;
   users: number;
   activeDevices: number;
@@ -16,9 +16,9 @@ export interface StatisticsTotals {
   expiredDevices: number;
   blockedDevices: number;
   events: number;
-}
+};
 
-export interface Statistics {
+export type Statistics = {
   generatedAt: string;
   totals: StatisticsTotals;
   byStatus: KeyValuePair[];
@@ -27,4 +27,4 @@ export interface Statistics {
   byCountry: KeyValuePair[];
   byEventType: KeyValuePair[];
   activationsLast30Days: ActivationDay[];
-}
+};

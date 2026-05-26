@@ -70,6 +70,7 @@ The app follows a pages → hooks → API layering:
 - Functional components only — no class components
 - Named exports everywhere except pages (pages use default export)
 - No `any` — use `unknown` and narrow with type guards
+- Prefer type aliases over interfaces
 
 ## State management
 
