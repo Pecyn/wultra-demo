@@ -36,12 +36,12 @@ pnpm vitest                                        # watch mode
 
 Base URL: `https://wultra.github.io/mtoken-tools/react-demo-api/`
 
-| Endpoint | Used by |
-| --- | --- |
-| `statistics.json` | Overview page |
-| `devices/index.json` | Devices list (client-side pagination) |
-| `devices/{deviceId}.json` | Device detail + event history |
-| `users/index.json` | Users list |
+| Endpoint                  | Used by                               |
+| ------------------------- | ------------------------------------- |
+| `statistics.json`         | Overview page                         |
+| `devices/index.json`      | Devices list (client-side pagination) |
+| `devices/{deviceId}.json` | Device detail + event history         |
+| `users/index.json`        | Users list                            |
 
 All fetching is done in custom hooks inside `src/hooks/`. The `src/api/client.ts` module wraps `fetch` and sets the base URL.
 
@@ -58,12 +58,12 @@ The app follows a pages → hooks → API layering:
 
 ## Pages & routing
 
-| Path | Page | Hook |
-| --- | --- | --- |
-| `/` | `Overview` | `useStatistics` |
-| `/devices` | `Devices` | `useDevices` + `useDataTable` |
-| `/devices/:id` | `DeviceDetail` | `useDevice` |
-| `/users` | `Users` | `useUsers` + `useDataTable` |
+| Path           | Page           | Hook                          |
+| -------------- | -------------- | ----------------------------- |
+| `/`            | `Overview`     | `useStatistics`               |
+| `/devices`     | `Devices`      | `useDevices` + `useDataTable` |
+| `/devices/:id` | `DeviceDetail` | `useDevice`                   |
+| `/users`       | `Users`        | `useUsers` + `useDataTable`   |
 
 ## Coding conventions
 
