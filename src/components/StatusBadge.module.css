@@ -1,0 +1,13 @@
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.active  { background: rgba(46, 160, 67, 0.15);  color: #2ea043; }
+.removed { background: rgba(248, 81, 73, 0.15);  color: #f85149; }
+.expired { background: rgba(210, 153, 34, 0.15); color: #d29922; }
+.blocked { background: rgba(72, 79, 88, 0.2);    color: #484f58; }

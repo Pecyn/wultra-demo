@@ -1,3 +1,12 @@
+import type { ReactNode } from 'react';
+
+export type Column<T> = {
+  key: keyof T;
+  label: string;
+  sortable?: boolean;
+  render?: (item: T) => ReactNode;
+};
+
 export type KeyValuePair = {
   key: string;
   value: number;
@@ -27,4 +36,23 @@ export type Statistics = {
   byCountry: KeyValuePair[];
   byEventType: KeyValuePair[];
   activationsLast30Days: ActivationDay[];
+};
+
+export type Device = {
+  id: string;
+  shortId: string;
+  vendor: string;
+  model: string;
+  platform: string;
+  osVersion: string;
+  appVersion: string;
+  status: 'active' | 'removed' | 'expired' | 'blocked';
+  biometryEnabled: boolean;
+  createdAt: string;
+  lastActiveAt: string;
+  user: { id: string; displayName: string };
+};
+
+export type DevicesResponse = {
+  items: Device[];
 };
