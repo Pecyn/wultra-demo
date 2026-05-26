@@ -28,3 +28,22 @@ export type Statistics = {
   byEventType: KeyValuePair[];
   activationsLast30Days: ActivationDay[];
 };
+
+export type Device = {
+  id: string;
+  shortId: string;
+  vendor: string;
+  model: string;
+  platform: string;
+  osVersion: string;
+  appVersion: string;
+  status: 'active' | 'removed' | 'expired' | 'blocked';
+  biometryEnabled: boolean;
+  createdAt: string;
+  lastActiveAt: string;
+  user: { id: string; displayName: string };
+};
+
+export type DevicesResponse = {
+  items: Device[];
+};
