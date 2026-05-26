@@ -3,12 +3,13 @@ import { KpiCard } from '../components/KpiCard';
 import { StatusPieChart } from '../components/StatusPieChart';
 import { PlatformBarChart } from '../components/PlatformBarChart';
 import { EventTypeBarChart } from '../components/EventTypeBarChart';
+import { Spinner } from '../components/Spinner';
 import styles from './Overview.module.css';
 
 export default function Overview() {
   const { data, loading, error } = useStatistics();
 
-  if (loading) return <p>Loading…</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return null;
 
